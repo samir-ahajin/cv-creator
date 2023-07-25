@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import PersonalInfoSection from "./components/PersonInfo";
 import EducationSection from "./components/EducationInfo";
 import ExperienceSection from "./components/ExperienceInfo";
+import Preview from "./components/Preview";
 import exampleImage from "./assets/exampleImage.jpg";
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 
 function App() {
+  const [showModal, setShowModal] = useState(true);
   const [personalInfoData, setPersonalInfoData] = useState({
     firstName: "",
     lastName: "",
@@ -40,6 +43,7 @@ function App() {
       to: moment().format("YYYY-MM-DD"),
     },
   ]);
+  const [finalCVInfo, setfinalCVInfo] = useState([]);
 
   //updating the personal,education or experience info
   const onDataChange = (e, i, dataInfo) => {
@@ -118,69 +122,111 @@ function App() {
       tmpStorage.splice(i, 1);
       setExperienceData(tmpStorage);
     }
-  };
+  }; //show the final output data
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    setfinalCVInfo([
+      {
+        ...personalInfoData,
+      },
+      {
+        ...educationData,
+      },
+      {
+        ...experienceData,
+      },
+    ]);
+    setShowModal(true);
+  };
+  const closeModal = (e) => {
+    e.preventDefault();
+    setShowModal(false);
+  };
   return (
     <>
-      <form action="">
-        {/* Personal information section*/}
-        <PersonalInfoSection
-          onDataChange={onDataChange}
-          personalInfoData={personalInfoData}
-        />
-        <hr />
-        {/* Education section addTab educStorage ondataChange deleteData*/}
-        <h1>Education</h1>
-        <div>
-          <button
-            className="btn"
-            onClick={(e) => {
-              addTab(e, "educ");
-            }}
-          >
-            {" "}
-            Add Education
+      <div>
+        {/*Start of form*/}
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
+          {/* Personal information section*/}
+          <PersonalInfoSection
+            onDataChange={onDataChange}
+            personalInfoData={personalInfoData}
+          />
+          <hr />
+          {/* Education section addTab educStorage ondataChange deleteData*/}
+          <h1>Education</h1>
+          <div>
+            <button
+              className="btn"
+              onClick={(e) => {
+                addTab(e, "educ");
+              }}
+            >
+              {" "}
+              Add Education
+            </button>
+          </div>
+          <ul>
+            {educationData.map((education, index) => (
+              <li key={education.id}>
+                <EducationSection
+                  education={education}
+                  index={index}
+                  onDataChange={onDataChange}
+                  deleteTab={deleteTab}
+                />
+              </li>
+            ))}
+          </ul>
+          <hr />
+          {/* Experience section*/}
+          <h1>Experience</h1>
+          <div>
+            <button
+              className="btn"
+              onClick={(e) => {
+                addTab(e, "exp");
+              }}
+            >
+              {" "}
+              Add Experience
+            </button>
+          </div>
+          <ul>
+            {experienceData.map((experience, i) => (
+              <li key={experience.id}>
+                <ExperienceSection
+                  experience={experience}
+                  i={i}
+                  onDataChange={onDataChange}
+                  deleteTab={deleteTab}
+                />
+              </li>
+            ))}
+          </ul>
+          {/* End of form*/}
+          {/* Submitting the form after fill up*/}
+          <button className="btn" type="submit">
+            Preview
           </button>
-        </div>
-        <ul>
-          {educationData.map((education, index) => (
-            <li key={education.id}>
-              <EducationSection
-                education={education}
-                index={index}
-                onDataChange={onDataChange}
-                deleteTab={deleteTab}
-              />
-            </li>
-          ))}
-        </ul>
-        <hr />
-        {/* Experience section*/}
-        <h1>Experience</h1>
-        <div>
-          <button
-            className="btn"
-            onClick={(e) => {
-              addTab(e, "exp");
-            }}
-          >
-            {" "}
-            Add Experience
-          </button>
-        </div>
-        <ul>
-          {experienceData.map((experience, i) => (
-            <li key={experience.id}>
-              <ExperienceSection
-                experience={experience}
-                i={i}
-                onDataChange={onDataChange}
-                deleteTab={deleteTab}
-              />
-            </li>
-          ))}
-        </ul>
-      </form>
+        </form>
+
+        {/*Modal con*/}
+        {showModal &&
+          createPortal(
+            <Preview
+              closeModal={closeModal}
+              showModal={showModal}
+              finalCVInfo={finalCVInfo}
+            />,
+            document.body
+          )}
+      </div>
     </>
   );
 }
