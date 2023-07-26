@@ -9,9 +9,8 @@ export default function PersonalInfo({ onDataChange, personalInfoData }) {
 
   return (
     <>
-      <h1>Personal Information</h1>
       <div id="personal-info">
-        <div>
+        <div className="picture pgrid-1">
           <input
             id="image"
             className="btn"
@@ -22,115 +21,149 @@ export default function PersonalInfo({ onDataChange, personalInfoData }) {
             required
           />
           <label htmlFor="image">Upload a Photo:</label>
-          <img src={personalInfoData.image} width="50px" alt="face" />
+          <img src={personalInfoData.image} alt="face" />
         </div>
-        <div>
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            id="firstName"
-            placeholder="Samir"
-            value={personalInfoData.firstName}
-            type="text"
-            onChange={(e) => {
-              onDataChange(e, 1, "personal");
-            }}
-            required
-          />
+        <div className="grid-item pgrid-2">
+          <div>
+            <label htmlFor="firstName">First Name:</label>
+          </div>
+          <div>
+            <input
+              id="firstName"
+              placeholder="Samir"
+              value={personalInfoData.firstName}
+              type="text"
+              onChange={(e) => {
+                onDataChange(e, 1, "personal");
+              }}
+              required
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            id="lastName"
-            placeholder="Ahajin"
-            value={personalInfoData.lastName}
-            type="text"
-            onChange={(e) => {
-              onDataChange(e, 1, "personal");
-            }}
-            required
-          />
+        <div className="grid-item pgrid-3">
+          <div>
+            <label htmlFor="lastName">Last Name:</label>
+          </div>
+          <div>
+            <input
+              id="lastName"
+              placeholder="Ahajin"
+              value={personalInfoData.lastName}
+              type="text"
+              onChange={(e) => {
+                onDataChange(e, 1, "personal");
+              }}
+              required
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor="age">Age</label>
-          <input
-            id="age"
-            placeholder="18"
-            value={personalInfoData.age}
-            type="number"
-            min="18"
-            onChange={(e) => {
-              onDataChange(e, 1, "personal");
-            }}
-            required
-          />
+        <div className="grid-item pgrid-4">
+          <div>
+            <label htmlFor="age">Age</label>
+          </div>
+          <div>
+            <input
+              id="age"
+              placeholder="18"
+              value={personalInfoData.age}
+              type="number"
+              min="18"
+              onChange={(e) => {
+                onDataChange(e, 1, "personal");
+              }}
+              required
+            />
+          </div>
         </div>
-
-        <div>
-          <label htmlFor="gender">Gender</label>
-          <select
-            id="gender"
-            value={personalInfoData.gender}
-            onChange={(e) => {
-              onDataChange(e, 1, "personal");
-            }}
-            required
-          >
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
+        <div className="grid-item pgrid-5">
+          <div>
+            <label htmlFor="gender">Gender</label>
+          </div>
+          <div>
+            <select
+              id="gender"
+              value={personalInfoData.gender}
+              onChange={(e) => {
+                onDataChange(e, 1, "personal");
+              }}
+              required
+            >
+              <option value="" disabled="disabled">
+                Select Gender
+              </option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
         </div>
-        <div>
-          <label htmlFor="address">Address</label>
-          <input
-            id="address"
-            placeholder="Bluehomes, Zamora Drive, Cabatangan, Zamboanga City PH 3000"
-            value={personalInfoData.address}
-            type="text"
-            onChange={(e) => {
-              onDataChange(e, 1, "personal");
-            }}
-            required
-          />
+        <div className="grid-item pgrid-6">
+          <div>
+            <label htmlFor="contactNumber">Contact Number</label>
+          </div>
+          <div>
+            <input
+              id="contactNumber"
+              placeholder="09123456789"
+              value={personalInfoData.contactNumber}
+              type="text"
+              onChange={(e) => {
+                onDataChange(e, 1, "personal");
+              }}
+              required
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor="contactNumber">Contact Number</label>
-          <input
-            id="contactNumber"
-            placeholder="09123456789"
-            value={personalInfoData.contactNumber}
-            type="text"
-            onChange={(e) => {
-              onDataChange(e, 1, "personal");
-            }}
-            required
-          />
+        <div className="grid-item pgrid-7">
+          <div>
+            <label htmlFor="email">Email</label>
+          </div>
+          <div>
+            <input
+              id="email"
+              placeholder="samirahajin@gmail.com"
+              value={personalInfoData.email}
+              type="email"
+              onChange={(e) => {
+                onDataChange(e, 1, "personal");
+              }}
+              required
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            placeholder="samirahajin@gmail.com"
-            value={personalInfoData.email}
-            type="email"
-            onChange={(e) => {
-              onDataChange(e, 1, "personal");
-            }}
-            required
-          />
+        <div className="grid-item pgrid-8">
+          <div>
+            <label htmlFor="address">Address</label>
+          </div>
+          <div>
+            <input
+              id="address"
+              placeholder="Bluehomes, Zamora Drive, Cabatangan, Zamboanga City PH 3000"
+              value={personalInfoData.address}
+              type="text"
+              onChange={(e) => {
+                onDataChange(e, 1, "personal");
+              }}
+              required
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            placeholder="Objective / About Yourself . . . "
-            value={personalInfoData.description}
-            rows={6}
-            cols={50}
-            onChange={(e) => {
-              onDataChange(e, 1, "personal");
-            }}
-            required
-          />
+        <div className="grid-item pgrid-9">
+          <div>
+            <label htmlFor="description">Description</label>
+          </div>
+          <div>
+            <textarea
+              id="description"
+              placeholder="Objective / About Yourself . . . "
+              value={personalInfoData.description}
+              rows={6}
+              cols={50}
+              onChange={(e) => {
+                onDataChange(e, 1, "personal");
+              }}
+              required
+            />
+          </div>
         </div>
       </div>
     </>

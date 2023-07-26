@@ -1,0 +1,208 @@
+.grid-item div {
+  margin: 2px;
+  padding: 2px 10px;
+}
+input,
+textarea,
+select {
+  width: 95%;
+  padding: 4px 10px;
+}
+select {
+  width: 101% !important;
+}
+select :first-child {
+  color: gray;
+}
+
+.btn {
+  width: 100%;
+  max-width: 180px;
+  min-width: 40px;
+  padding: 1rem;
+  color: white;
+  background-color: #256d85;
+  border-style: none;
+  justify-content: center;
+  border-radius: 0px 6px;
+}
+.delete {
+  background-color: #47b5ff !important;
+}
+#preview {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+}
+#preview .btn {
+  background-color: #06283d;
+  width: 160px;
+  padding: 1.5rem;
+}
+.header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+}
+
+.header div:last-child {
+  display: grid;
+  padding-right: 3rem;
+  justify-items: end;
+}
+/*Personal - info section*/
+#personal-info {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  grid-template-rows: 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 1fr;
+  grid-template-areas:
+    "input2 input1 "
+    "input3 input1"
+    "input4 input1"
+    "input5 input1"
+    "input6 input6"
+    "input7 input7"
+    "input8 input8"
+    "input9 input9";
+  box-shadow: 0px 2px 10px #d4d4d4;
+  margin-bottom: 1.5rem;
+}
+#personal-info input[type="file"] {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+#personal-info input[type="file"] + label {
+  text-align: center;
+  width: 150px;
+  min-width: 40px;
+  padding: 1rem;
+  color: white;
+  background-color: #256d85;
+  border-radius: 0px 6px;
+}
+#personal-info .picture {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
+.picture img {
+  width: 150px;
+  border-radius: 50%;
+  margin: 5px;
+  box-shadow: 0px 2px 10px #d4d4d4;
+}
+#personal-info .grid-item {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+}
+
+.pgrid-1 {
+  grid-area: input1;
+}
+.pgrid-2 {
+  grid-area: input2;
+}
+.pgrid-3 {
+  grid-area: input3;
+}
+.pgrid-4 {
+  grid-area: input4;
+}
+.pgrid-5 {
+  grid-area: input5;
+}
+.pgrid-6 {
+  grid-area: input6;
+}
+.pgrid-7 {
+  grid-area: input7;
+}
+.pgrid-8 {
+  grid-area: input8;
+}
+.pgrid-9 {
+  grid-area: input9;
+}
+/*End for personal-info section*/
+
+/*Education and experience section*/
+#education,
+#experience {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 1rem;
+
+  box-shadow: 0px 2px 10px #d4d4d4;
+  margin-bottom: 1.5rem;
+}
+#education .grid-item,
+#experience .grid-item {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+}
+
+/*End for education and experience section*/
+
+/*#final {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 50px;
+  z-index: 1000;
+}
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}*/
+
+@media only screen and (max-width: 650px) {
+  #personal-info {
+    justify-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 1fr;
+    grid-template-areas:
+      "input1"
+      "input2"
+      "input3"
+      "input4"
+      "input5"
+      "input6"
+      "input7"
+      "input8"
+      "input9";
+  }
+  #personal-info .grid-item {
+    grid-template-columns: 1fr;
+    width: 95%;
+    align-content: center;
+    text-align: center;
+  }
+  #personal-info .grid-item div {
+    padding: 4px 0px;
+  }
+  #education .grid-item,
+  #experience .grid-item {
+    grid-template-columns: 1fr;
+  }
+
+  .header div:last-child {
+    padding-right: 0;
+  }
+}

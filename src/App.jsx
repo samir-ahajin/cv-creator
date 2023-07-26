@@ -41,6 +41,7 @@ function App() {
       position: "",
       from: "2000-01-01",
       to: moment().format("YYYY-MM-DD"),
+      experienceDescription: "",
     },
   ]);
   const [finalCVInfo, setfinalCVInfo] = useState([]);
@@ -60,7 +61,7 @@ function App() {
         }
         tmpStorage[e.target.id] = data;
         setPersonalInfoData({ ...tmpStorage });
-
+        console.log(personalInfoData);
         break;
 
       case "educ":
@@ -143,9 +144,13 @@ function App() {
     e.preventDefault();
     setShowModal(false);
   };
+  //RETURN START HERE ! ! !
   return (
     <>
-      <div>
+      <div id="main">
+        <div>
+          <h1 id="title">CV-CREATOR</h1>
+        </div>
         {/*Start of form*/}
         <form
           onSubmit={(e) => {
@@ -153,23 +158,30 @@ function App() {
           }}
         >
           {/* Personal information section*/}
+          <h1>PERSONAL INFORMATION</h1>
+
           <PersonalInfoSection
             onDataChange={onDataChange}
             personalInfoData={personalInfoData}
           />
-          <hr />
+
           {/* Education section addTab educStorage ondataChange deleteData*/}
-          <h1>Education</h1>
-          <div>
-            <button
-              className="btn"
-              onClick={(e) => {
-                addTab(e, "educ");
-              }}
-            >
-              {" "}
-              Add Education
-            </button>
+
+          <div className="header">
+            <div>
+              <h1>EDUCATION</h1>
+            </div>
+            <div>
+              <button
+                className="btn"
+                onClick={(e) => {
+                  addTab(e, "educ");
+                }}
+              >
+                {" "}
+                Add Education Tab
+              </button>
+            </div>
           </div>
           <ul>
             {educationData.map((education, index) => (
@@ -183,19 +195,24 @@ function App() {
               </li>
             ))}
           </ul>
-          <hr />
+
           {/* Experience section*/}
-          <h1>Experience</h1>
-          <div>
-            <button
-              className="btn"
-              onClick={(e) => {
-                addTab(e, "exp");
-              }}
-            >
-              {" "}
-              Add Experience
-            </button>
+
+          <div className="header">
+            <div>
+              <h1>EXPERIENCE</h1>
+            </div>
+            <div>
+              <button
+                className="btn"
+                onClick={(e) => {
+                  addTab(e, "exp");
+                }}
+              >
+                {" "}
+                Add Experience Tab
+              </button>
+            </div>
           </div>
           <ul>
             {experienceData.map((experience, i) => (
@@ -211,9 +228,11 @@ function App() {
           </ul>
           {/* End of form*/}
           {/* Submitting the form after fill up*/}
-          <button className="btn" type="submit">
-            Preview
-          </button>
+          <div id="preview">
+            <button className="btn" type="submit">
+              Preview
+            </button>
+          </div>
         </form>
 
         {/*Modal con*/}
