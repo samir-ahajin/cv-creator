@@ -1,10 +1,8 @@
-let tmpImg;
+import exampleImage from "../assets/exampleImage.jpg";
+
 export default function PersonalInfo({ onDataChange, personalInfoData }) {
-  if (personalInfoData.image !== "") {
-    tmpImg = personalInfoData.image;
-  }
   if (personalInfoData.image === "") {
-    personalInfoData.image = tmpImg;
+    personalInfoData.image = exampleImage;
   }
 
   return (
@@ -18,8 +16,8 @@ export default function PersonalInfo({ onDataChange, personalInfoData }) {
             onChange={(e) => {
               onDataChange(e, 1, "personal");
             }}
-            required
           />
+
           <label htmlFor="image">Upload a Photo:</label>
           <img src={personalInfoData.image} alt="face" />
         </div>

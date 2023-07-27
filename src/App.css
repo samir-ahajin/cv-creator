@@ -37,8 +37,9 @@ select :first-child {
 }
 #preview .btn {
   background-color: #06283d;
-  width: 160px;
-  padding: 1.5rem;
+  width: 120px;
+  padding: 1.5rem rem;
+  margin: 3px;
 }
 .header {
   width: 100%;

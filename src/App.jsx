@@ -8,9 +8,11 @@ import exampleImage from "./assets/exampleImage.jpg";
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
+import exampleImage1 from "./assets/exampleImage1.jpg";
 
 function App() {
   const [showModal, setShowModal] = useState(true);
+
   const [personalInfoData, setPersonalInfoData] = useState({
     firstName: "",
     lastName: "",
@@ -19,7 +21,7 @@ function App() {
     address: "",
     contactNumber: "",
     email: "",
-    image: exampleImage,
+    image: "",
     description: "",
   });
   const [educationData, setEducationData] = useState([
@@ -58,6 +60,7 @@ function App() {
           data = URL.createObjectURL(e.target.files[0]);
         } else {
           data = e.target.value;
+          console.log("hello");
         }
         tmpStorage[e.target.id] = data;
         setPersonalInfoData({ ...tmpStorage });
@@ -123,7 +126,8 @@ function App() {
       tmpStorage.splice(i, 1);
       setExperienceData(tmpStorage);
     }
-  }; //show the final output data
+  };
+  //show the final output data and modal
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -140,17 +144,46 @@ function App() {
     ]);
     setShowModal(true);
   };
+  //close active modal
   const closeModal = (e) => {
     e.preventDefault();
     setShowModal(false);
   };
+
+  //Add a sample cv
+  const generateCV = () => {
+    let tmpStorage;
+    tmpStorage = personalInfoData;
+
+    setPersonalInfoData({
+      firstName: "Samir",
+      lastName: "ahajin",
+      age: "27",
+      gender: "",
+      address:
+        "Bluehomes, Zamora Drive, Cabatangan Zamboanga City,Zamboanga City Philippines",
+      contactNumber: "+639603208784",
+      email: "samirahajin@gmail.com",
+      image: "",
+      description: "Knows Web Design and Graphic Design",
+    });
+  };
+
   //RETURN START HERE ! ! !
   return (
     <>
       <div id="main">
         <div>
-          <h1 id="title">CV-CREATOR</h1>
+          <h1 id="title">CV-CREATOR</h1>{" "}
         </div>
+        <button
+          className="btn"
+          onClick={() => {
+            generateCV();
+          }}
+        >
+          Sample
+        </button>
         {/*Start of form*/}
         <form
           onSubmit={(e) => {
