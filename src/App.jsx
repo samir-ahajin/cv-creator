@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import PersonalInfoSection from "./components/PersonInfo";
+import Skills from "./components/Skills";
 import EducationSection from "./components/EducationInfo";
 import ExperienceSection from "./components/ExperienceInfo";
 import Preview from "./components/Preview";
@@ -11,7 +12,7 @@ import "./App.css";
 import exampleImage1 from "./assets/exampleImage1.jpg";
 
 function App() {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const [personalInfoData, setPersonalInfoData] = useState({
     firstName: "",
@@ -24,6 +25,9 @@ function App() {
     image: "",
     description: "",
   });
+  const [skillsData, setSkillsData] = useState([
+    { id: uuidv4(), description: "" },
+  ]);
   const [educationData, setEducationData] = useState([
     {
       id: uuidv4(),
@@ -34,7 +38,6 @@ function App() {
       to: moment().format("YYYY-MM-DD"),
     },
   ]);
-
   const [experienceData, setExperienceData] = useState([
     {
       id: uuidv4(),
@@ -64,22 +67,28 @@ function App() {
         }
         tmpStorage[e.target.id] = data;
         setPersonalInfoData({ ...tmpStorage });
-        console.log(personalInfoData);
-        break;
 
+        break;
+      case "skills":
+        tmpStorage = [...skillsData];
+        tmpStorage[i][e.target.name] = e.target.value;
+        setSkillsData(tmpStorage);
+        console.log(skillsData);
+        break;
       case "educ":
         tmpStorage = [...educationData];
         tmpStorage[i][e.target.name] = e.target.value;
         setEducationData(tmpStorage);
-        console.log(educationData);
+
         break;
 
       case "exp":
         tmpStorage = [...experienceData];
         tmpStorage[i][e.target.name] = e.target.value;
         setExperienceData(tmpStorage);
-        console.log(experienceData);
+
         break;
+
       default:
         break;
     }
@@ -100,6 +109,8 @@ function App() {
           to: moment().format("YYYY-MM-DD"),
         },
       ]);
+    } else if (tabData === "skills") {
+      setSkillsData([...skillsData, { id: uuidv4(), description: "" }]);
     } else if (tabData === "exp") {
       setExperienceData([
         ...experienceData,
@@ -121,6 +132,11 @@ function App() {
       tmpStorage = [...educationData];
       tmpStorage.splice(i, 1);
       setEducationData(tmpStorage);
+    } else if (dataInfo === "skills") {
+      console.log("hello");
+      tmpStorage = [...skillsData];
+      tmpStorage.splice(i, 1);
+      setSkillsData(tmpStorage);
     } else if (dataInfo === "exp") {
       tmpStorage = [...experienceData];
       tmpStorage.splice(i, 1);
@@ -130,17 +146,14 @@ function App() {
   //show the final output data and modal
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log(e.target.id);
     setfinalCVInfo([
       {
         ...personalInfoData,
       },
-      {
-        ...educationData,
-      },
-      {
-        ...experienceData,
-      },
+      [...skillsData],
+      [...educationData],
+      [...experienceData],
     ]);
     setShowModal(true);
   };
@@ -152,21 +165,54 @@ function App() {
 
   //Add a sample cv
   const generateCV = () => {
-    let tmpStorage;
-    tmpStorage = personalInfoData;
+    setShowModal(false);
 
     setPersonalInfoData({
       firstName: "Samir",
       lastName: "ahajin",
       age: "27",
-      gender: "",
-      address:
-        "Bluehomes, Zamora Drive, Cabatangan Zamboanga City,Zamboanga City Philippines",
+      gender: "Male",
+      address: "Bluehomes, Zamora Drive, Cabatangan Zamboanga City, PH 3000",
       contactNumber: "+639603208784",
       email: "samirahajin@gmail.com",
-      image: "",
+      image: exampleImage1,
       description: "Knows Web Design and Graphic Design",
     });
+    setSkillsData([
+      {
+        id: uuidv4(),
+        description:
+          "Web Design using the following: REACT.js, CSS/SaSS, Javascript, and Node.js",
+      },
+      {
+        id: uuidv4(),
+        description: "Can create a intermediate 3D Design using Blender",
+      },
+      { id: uuidv4(), description: "Logo Design using Adobe Illustrator." },
+      { id: uuidv4(), description: "Graphic Design using Adobe Phosotoshop" },
+    ]);
+    setEducationData([
+      {
+        id: uuidv4(),
+        universityName: "STI College-Zamboanga",
+        educationAddress: "Gov. Lim Avenue, Zamboanga City",
+        degree: "Bachelor of Science in Information Technology",
+        from: "2012-04-27",
+        to: "2016-04-27",
+      },
+    ]);
+    setExperienceData([
+      {
+        id: uuidv4(),
+        companyName: "Bureau of Customs",
+        experienceAddress: "Port of Zamboanga, Zamboanga City",
+        position: "Administrative Services Assistant",
+        experienceDescription:
+          "File management and create a weekly-basis report",
+        from: "2020-04-20",
+        to: "2020-10-20",
+      },
+    ]);
   };
 
   //RETURN START HERE ! ! !
@@ -176,14 +222,7 @@ function App() {
         <div>
           <h1 id="title">CV-CREATOR</h1>{" "}
         </div>
-        <button
-          className="btn"
-          onClick={() => {
-            generateCV();
-          }}
-        >
-          Sample
-        </button>
+
         {/*Start of form*/}
         <form
           onSubmit={(e) => {
@@ -199,6 +238,37 @@ function App() {
           />
 
           {/* Education section addTab educStorage ondataChange deleteData*/}
+          {/*Skills Section*/}
+          <div className="header">
+            <div>
+              <h1>SKILLS</h1>
+            </div>
+            <div>
+              <button
+                className="btn add"
+                onClick={(e) => {
+                  addTab(e, "skills");
+                }}
+              >
+                {" "}
+                Add Education Tab
+              </button>
+            </div>
+          </div>
+          <ul>
+            {skillsData.map((skill, index) => (
+              <li key={skill.id}>
+                <Skills
+                  skills={skill}
+                  index={index}
+                  onDataChange={onDataChange}
+                  deleteTab={deleteTab}
+                />
+              </li>
+            ))}
+          </ul>
+
+          {/*Education Section*/}
 
           <div className="header">
             <div>
@@ -206,7 +276,7 @@ function App() {
             </div>
             <div>
               <button
-                className="btn"
+                className="btn add"
                 onClick={(e) => {
                   addTab(e, "educ");
                 }}
@@ -237,7 +307,7 @@ function App() {
             </div>
             <div>
               <button
-                className="btn"
+                className="btn add"
                 onClick={(e) => {
                   addTab(e, "exp");
                 }}
@@ -259,14 +329,24 @@ function App() {
               </li>
             ))}
           </ul>
-          {/* End of form*/}
+
           {/* Submitting the form after fill up*/}
           <div id="preview">
-            <button className="btn" type="submit">
+            <button
+              className="btn"
+              onClick={() => {
+                generateCV();
+              }}
+              type="button"
+            >
+              Sample
+            </button>
+            <button id="show" className="btn" type="submit">
               Preview
             </button>
           </div>
         </form>
+        {/* End of form*/}
 
         {/*Modal con*/}
         {showModal &&

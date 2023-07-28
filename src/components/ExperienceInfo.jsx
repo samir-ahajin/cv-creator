@@ -8,7 +8,7 @@ export default function ExperienceSection({
 }) {
   return (
     <>
-      <div id="experience">
+      <div id="experience" className="padd">
         <div className="grid-item">
           <div>
             <label htmlFor="companyName">Company Name</label>

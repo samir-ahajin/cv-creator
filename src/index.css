@@ -15,6 +15,9 @@ body {
   max-width: 800px;
   min-width: 200px;
 }
+.padd {
+  padding: 30px 4px;
+}
 .center {
   display: flex;
   justify-content: center;

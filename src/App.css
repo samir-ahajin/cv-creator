@@ -24,7 +24,35 @@ select :first-child {
   background-color: #256d85;
   border-style: none;
   justify-content: center;
-  border-radius: 0px 6px;
+  border-radius: 6px;
+}
+
+.add {
+  border-radius: 6px 6px 0px 0px !important;
+  transition: text-decoration 300ms, text-underline-offset 300ms, color 300ms;
+}
+
+.add:hover {
+  color: #06283d;
+  background-color: white;
+  box-shadow: 0px -8px 6px #d4d4d4;
+  text-decoration: underline;
+  font-weight: bold;
+  text-underline-offset: 0.4rem;
+  text-decoration-thickness: 2px;
+  animation: 0.5s offset-line;
+  transition: font-weight 300ms;
+}
+@keyframes offset-line {
+  from {
+    opacity: 0.2;
+    text-underline-offset: 0.8rem;
+  }
+
+  to {
+    opacity: 1;
+    text-underline-offset: 0.4rem;
+  }
 }
 .delete {
   background-color: #47b5ff !important;
@@ -85,8 +113,8 @@ select :first-child {
   min-width: 40px;
   padding: 1rem;
   color: white;
-  background-color: #256d85;
-  border-radius: 0px 6px;
+  background-color: #47b5ff;
+  border-radius: 6px;
 }
 #personal-info .picture {
   display: flex;
@@ -154,25 +182,6 @@ select :first-child {
 
 /*End for education and experience section*/
 
-/*#final {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 50px;
-  z-index: 1000;
-}
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-}*/
-
 @media only screen and (max-width: 650px) {
   #personal-info {
     justify-items: center;
@@ -205,5 +214,74 @@ select :first-child {
 
   .header div:last-child {
     padding-right: 0;
+  }
+}
+#buttons {
+  z-index: 2000;
+}
+#page {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 20mm;
+  margin: 10mm auto;
+  border: 1px #d3d3d3 solid;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: 0.5s show alternate;
+  transition: transform 0.3s ease-in-out, opacity 0.4s ease;
+}
+
+.subpage {
+  padding: 1cm;
+  border: 5px red solid;
+  height: 257mm;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  html,
+  body {
+    width: 210mm;
+    height: 257mm;
+  }
+  .page {
+    margin: 0;
+    border: initial;
+    border-radius: initial;
+    width: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
+  }
+}
+
+@keyframes show {
+  from {
+    transition: transform 0.3s ease-in-out, opacity 0.4s ease;
+    transform: translate(-50%, -100%);
+  }
+
+  to {
+    transform: translate(-50%, -50%);
   }
 }

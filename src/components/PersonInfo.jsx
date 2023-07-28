@@ -7,7 +7,7 @@ export default function PersonalInfo({ onDataChange, personalInfoData }) {
 
   return (
     <>
-      <div id="personal-info">
+      <div id="personal-info" className="padd">
         <div className="picture pgrid-1">
           <input
             id="image"

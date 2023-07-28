@@ -8,7 +8,7 @@ export default function EducationSection({
 }) {
   return (
     <>
-      <div id="education">
+      <div id="education" className="padd">
         <div className="grid-item">
           <div>
             <label htmlFor="universityName">University/School</label>
