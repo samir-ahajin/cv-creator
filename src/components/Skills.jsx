@@ -1,27 +1,23 @@
 export default function Skills({ skills, index, onDataChange, deleteTab }) {
   return (
     <>
-      <div id="skills" className="padd">
+      <div id="skill-list">
         <div className="grid-item">
-          <div>
-            <label htmlFor={"description"}>Skill</label>
-          </div>
-          <div>
-            <input
-              name={"description"}
-              placeholder="Web design"
-              value={skills.description}
-              type="text"
-              onChange={(e) => {
-                onDataChange(e, index, "skills");
-              }}
-              required
-            />
-          </div>
+          <input
+            name={"description"}
+            placeholder="Web design"
+            value={skills.description}
+            type="text"
+            onChange={(e) => {
+              onDataChange(e, index, "skills");
+            }}
+            required
+          />
         </div>
-        <div className="center">
+
+        <div className="grid-item">
           <button
-            className="delete btn"
+            className="delete "
             onClick={() => {
               deleteTab(index, "skills");
             }}

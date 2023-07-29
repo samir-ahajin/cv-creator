@@ -8,7 +8,7 @@ export default function EducationSection({
 }) {
   return (
     <>
-      <div id="education" className="padd">
+      <div className="education shadow padd">
         <div className="grid-item">
           <div>
             <label htmlFor="universityName">University/School</label>
@@ -100,7 +100,7 @@ export default function EducationSection({
         </div>
         <div className="center">
           <button
-            className="delete btn"
+            className="delete"
             onClick={() => {
               deleteTab(index, "educ");
             }}

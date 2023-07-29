@@ -1,11 +1,9 @@
-import { months } from "moment/moment";
-
 export default function Preview({ showModal, closeModal, finalCVInfo }) {
   if (!showModal) return null;
 
   let personalInfo = finalCVInfo[0];
   const skills = finalCVInfo[1].map((skill) => (
-    <li key={skill.id}>-{" " + skill.description}</li>
+    <li key={skill.id}>{skill.description}</li>
   ));
   const education = finalCVInfo[2].map((educ) => (
     <li key={educ.id}>
@@ -56,50 +54,67 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
           </div>
 
           <div className="subpage">
-            <div>
+            <div className="upper-side">
+              <ul>
+                <div>
+                  <li className="name">
+                    {personalInfo.firstName.toUpperCase() +
+                      " " +
+                      personalInfo.lastName.toUpperCase()}
+                  </li>
+                  <li>{personalInfo.email}</li>
+                  <li>{personalInfo.contactNumber}</li>
+                </div>
+
+                <div>
+                  <li>
+                    {
+                      <img
+                        src={personalInfo.image}
+                        width="100px"
+                        alt="Profile Picture"
+                      />
+                    }
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <hr />
+
+            <h1>PERSONAL INFORMATION:</h1>
+
+            <div className="personal-section indentation">
               <ul>
                 <li>
-                  {personalInfo.firstName.toUpperCase() +
-                    " " +
-                    personalInfo.lastName.toUpperCase()}
+                  <span>Gender</span>
+                  {": " + personalInfo.gender}
                 </li>
-                <li>{personalInfo.email}</li>
-                <li>{personalInfo.contactNumber}</li>
-
                 <li>
-                  {
-                    <img
-                      src={personalInfo.image}
-                      width="100px"
-                      alt="Profile Picture"
-                    />
-                  }
+                  <span>Age</span>
+                  {": " + personalInfo.age}
+                </li>
+                <li>
+                  <span>Permanent Address</span>
+                  {": " + personalInfo.address}
                 </li>
               </ul>
-              <hr />
+            </div>
+            <h1>SKILLS:</h1>
 
-              <h1>PERSONAL INFORMATION:</h1>
-              <ul>
-                <li>
-                  <span>Gender:</span>
-                  {" " + personalInfo.gender}
-                </li>
-                <li>
-                  <span>Age:</span>
-                  {" " + personalInfo.age}
-                </li>
-                <li>
-                  <span>Permanent Address:</span>
-                  {" " + personalInfo.address}
-                </li>
-              </ul>
-              <h1>SKILLS:</h1>
+            <div className="skills-section indentation">
               <ul>{skills}</ul>
-              <h1>EDUCATION:</h1>
+            </div>
+            <h1>EDUCATION:</h1>
+            <div className="education-section indentation">
               <ul>{education}</ul>
-              <h1>EXPERIENCE:</h1>
+            </div>
+            <h1>WORK EXPERIENCE:</h1>
+            <div className="exp-section indentation">
               <ul>{experience}</ul>
             </div>
+
+            <h1>TRAININGS/SEMINARS ATTENDED:</h1>
+
             <br />
           </div>
         </div>

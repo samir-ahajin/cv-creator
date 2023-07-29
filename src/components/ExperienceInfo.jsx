@@ -8,7 +8,7 @@ export default function ExperienceSection({
 }) {
   return (
     <>
-      <div id="experience" className="padd">
+      <div className="experience shadow padd">
         <div className="grid-item">
           <div>
             <label htmlFor="companyName">Company Name</label>
@@ -118,7 +118,7 @@ export default function ExperienceSection({
         </div>
         <div className="center">
           <button
-            className="delete btn"
+            className="delete"
             onClick={() => {
               deleteTab(i, "exp");
             }}

@@ -7,7 +7,7 @@ export default function PersonalInfo({ onDataChange, personalInfoData }) {
 
   return (
     <>
-      <div id="personal-info" className="padd">
+      <div id="personal-info" className="shadow padd">
         <div className="picture pgrid-1">
           <input
             id="image"
@@ -18,7 +18,7 @@ export default function PersonalInfo({ onDataChange, personalInfoData }) {
             }}
           />
 
-          <label htmlFor="image">Upload a Photo:</label>
+          <label htmlFor="image">Upload a Photo</label>
           <img src={personalInfoData.image} alt="face" />
         </div>
         <div className="grid-item pgrid-2">
@@ -138,24 +138,6 @@ export default function PersonalInfo({ onDataChange, personalInfoData }) {
               placeholder="Bluehomes, Zamora Drive, Cabatangan, Zamboanga City PH 3000"
               value={personalInfoData.address}
               type="text"
-              onChange={(e) => {
-                onDataChange(e, 1, "personal");
-              }}
-              required
-            />
-          </div>
-        </div>
-        <div className="grid-item pgrid-9">
-          <div>
-            <label htmlFor="description">Description</label>
-          </div>
-          <div>
-            <textarea
-              id="description"
-              placeholder="Objective / About Yourself . . . "
-              value={personalInfoData.description}
-              rows={6}
-              cols={50}
               onChange={(e) => {
                 onDataChange(e, 1, "personal");
               }}

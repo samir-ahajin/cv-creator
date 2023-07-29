@@ -5,7 +5,7 @@ import Skills from "./components/Skills";
 import EducationSection from "./components/EducationInfo";
 import ExperienceSection from "./components/ExperienceInfo";
 import Preview from "./components/Preview";
-import exampleImage from "./assets/exampleImage.jpg";
+
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
@@ -23,7 +23,6 @@ function App() {
     contactNumber: "",
     email: "",
     image: "",
-    description: "",
   });
   const [skillsData, setSkillsData] = useState([
     { id: uuidv4(), description: "" },
@@ -172,17 +171,16 @@ function App() {
       lastName: "ahajin",
       age: "27",
       gender: "Male",
-      address: "Bluehomes, Zamora Drive, Cabatangan Zamboanga City, PH 3000",
+      address: "Bluehomes, Zamora Drive, Cabatangan, Zamboanga City, PH 3000",
       contactNumber: "+639603208784",
       email: "samirahajin@gmail.com",
       image: exampleImage1,
-      description: "Knows Web Design and Graphic Design",
     });
     setSkillsData([
       {
         id: uuidv4(),
         description:
-          "Web Design using the following: REACT.js, CSS/SaSS, Javascript, and Node.js",
+          "Web Design using the following tools: REACT.js, CSS/SaSS, Javascript, and Node.js",
       },
       {
         id: uuidv4(),
@@ -255,18 +253,21 @@ function App() {
               </button>
             </div>
           </div>
-          <ul>
-            {skillsData.map((skill, index) => (
-              <li key={skill.id}>
-                <Skills
-                  skills={skill}
-                  index={index}
-                  onDataChange={onDataChange}
-                  deleteTab={deleteTab}
-                />
-              </li>
-            ))}
-          </ul>
+
+          <div id="skills" className="shadow padd">
+            <ul>
+              {skillsData.map((skill, index) => (
+                <li key={skill.id}>
+                  <Skills
+                    skills={skill}
+                    index={index}
+                    onDataChange={onDataChange}
+                    deleteTab={deleteTab}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
 
           {/*Education Section*/}
 

@@ -55,7 +55,17 @@ select :first-child {
   }
 }
 .delete {
-  background-color: #47b5ff !important;
+  width: 100%;
+  max-width: 150px;
+  min-width: 40px;
+  padding: 5px 0px;
+  color: white;
+  border-style: none;
+  background-color: #3a9cdd;
+  border-radius: 3px;
+}
+.delete:hover {
+  background-color: #eb3232;
 }
 #preview {
   position: fixed;
@@ -66,8 +76,15 @@ select :first-child {
 #preview .btn {
   background-color: #06283d;
   width: 120px;
-  padding: 1.5rem rem;
+  padding: 1.5rem 0rem;
   margin: 3px;
+}
+#preview .btn:hover {
+  background-color: white;
+  color: #06283d;
+  border: 1px solid #06283d;
+  font-weight: bold;
+  padding: 1.3rem 0rem;
 }
 .header {
   width: 100%;
@@ -86,7 +103,7 @@ select :first-child {
 #personal-info {
   display: grid;
   grid-template-columns: 1fr 0.5fr;
-  grid-template-rows: 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 1fr;
+  grid-template-rows: 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr;
   grid-template-areas:
     "input2 input1 "
     "input3 input1"
@@ -94,9 +111,8 @@ select :first-child {
     "input5 input1"
     "input6 input6"
     "input7 input7"
-    "input8 input8"
-    "input9 input9";
-  box-shadow: 0px 2px 10px #d4d4d4;
+    "input8 input8";
+
   margin-bottom: 1.5rem;
 }
 #personal-info input[type="file"] {
@@ -108,13 +124,18 @@ select :first-child {
   z-index: -1;
 }
 #personal-info input[type="file"] + label {
+  letter-spacing: 2px;
   text-align: center;
   width: 150px;
+  max-height: 53.99px;
   min-width: 40px;
-  padding: 1rem;
+  padding: 20px;
   color: white;
-  background-color: #47b5ff;
+  background-color: #06283d;
   border-radius: 6px;
+}
+#personal-info input[type="file"] + label:hover {
+  background-color: #063c5e;
 }
 #personal-info .picture {
   display: flex;
@@ -158,35 +179,45 @@ select :first-child {
 .pgrid-8 {
   grid-area: input8;
 }
-.pgrid-9 {
-  grid-area: input9;
-}
+
 /*End for personal-info section*/
 
 /*Education and experience section*/
-#education,
-#experience {
+.education,
+.experience {
   display: grid;
   grid-template-columns: 1fr;
   padding: 1rem;
 
-  box-shadow: 0px 2px 10px #d4d4d4;
   margin-bottom: 1.5rem;
 }
-#education .grid-item,
-#experience .grid-item {
+.education .grid-item,
+.experience .grid-item {
   display: grid;
   grid-template-columns: 150px 1fr;
   align-items: center;
 }
 
+.shadow {
+  box-shadow: 0px 2px 10px #d4d4d4;
+}
+
 /*End for education and experience section*/
+#skills {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+#skills #skill-list {
+  display: grid;
+  grid-template-columns: 0.8fr 0.2fr;
+  padding: 10px;
+}
 
 @media only screen and (max-width: 650px) {
   #personal-info {
     justify-items: center;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 1fr;
+    grid-template-rows: 1fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr;
     grid-template-areas:
       "input1"
       "input2"
@@ -195,8 +226,7 @@ select :first-child {
       "input5"
       "input6"
       "input7"
-      "input8"
-      "input9";
+      "input8";
   }
   #personal-info .grid-item {
     grid-template-columns: 1fr;
@@ -219,40 +249,7 @@ select :first-child {
 #buttons {
   z-index: 2000;
 }
-#page {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  width: 210mm;
-  min-height: 297mm;
-  padding: 20mm;
-  margin: 10mm auto;
-  border: 1px #d3d3d3 solid;
-  border-radius: 5px;
-  background: white;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  animation: 0.5s show alternate;
-  transition: transform 0.3s ease-in-out, opacity 0.4s ease;
-}
 
-.subpage {
-  padding: 1cm;
-  border: 5px red solid;
-  height: 257mm;
-}
-
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-}
 @page {
   size: A4;
   margin: 0;
