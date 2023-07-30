@@ -6,7 +6,7 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
     <li key={skill.id}>{skill.description}</li>
   ));
   const education = finalCVInfo[2].map((educ) => (
-    <li key={educ.id}>
+    <li key={educ.id} className="space-bottom">
       <ul>
         <li>{educ.universityName}</li>
         <li>{educ.degree}</li>
@@ -17,7 +17,7 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
     </li>
   ));
   const experience = finalCVInfo[3].map((exp) => (
-    <li key={exp.id}>
+    <li key={exp.id} className="space-bottom">
       <ul>
         <li>{exp.companyName}</li>
         <li>{exp.position}</li>
@@ -28,6 +28,18 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
           <span>Job Description:</span>
           {" " + exp.experienceDescription}
         </li>
+      </ul>
+    </li>
+  ));
+  const trainings = finalCVInfo[4].map((training) => (
+    <li key={training.id} className="space-bottom">
+      <ul>
+        <li>{training.trainingName}</li>
+        <li>
+          {dateToString(training.from) + " - " + dateToString(training.to)}
+        </li>
+
+        <li>{training.trainingDescription}</li>
       </ul>
     </li>
   ));
@@ -112,8 +124,10 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
             <div className="exp-section indentation">
               <ul>{experience}</ul>
             </div>
-
             <h1>TRAININGS/SEMINARS ATTENDED:</h1>
+            <div className="exp-section indentation">
+              <ul>{trainings}</ul>
+            </div>
 
             <br />
           </div>

@@ -4,8 +4,8 @@ import PersonalInfoSection from "./components/PersonInfo";
 import Skills from "./components/Skills";
 import EducationSection from "./components/EducationInfo";
 import ExperienceSection from "./components/ExperienceInfo";
+import TrainingSection from "./components/Trainings";
 import Preview from "./components/Preview";
-
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
@@ -37,6 +37,7 @@ function App() {
       to: moment().format("YYYY-MM-DD"),
     },
   ]);
+
   const [experienceData, setExperienceData] = useState([
     {
       id: uuidv4(),
@@ -46,6 +47,15 @@ function App() {
       from: "2000-01-01",
       to: moment().format("YYYY-MM-DD"),
       experienceDescription: "",
+    },
+  ]);
+  const [trainingData, setTrainingData] = useState([
+    {
+      id: uuidv4(),
+      trainingName: "",
+      trainingDescription: "",
+      from: "2000-01-01",
+      to: moment().format("YYYY-MM-DD"),
     },
   ]);
   const [finalCVInfo, setfinalCVInfo] = useState([]);
@@ -87,6 +97,12 @@ function App() {
         setExperienceData(tmpStorage);
 
         break;
+      case "training":
+        tmpStorage = [...trainingData];
+        tmpStorage[i][e.target.name] = e.target.value;
+        setTrainingData(tmpStorage);
+
+        break;
 
       default:
         break;
@@ -122,6 +138,17 @@ function App() {
           to: moment().format("YYYY-MM-DD"),
         },
       ]);
+    } else if (tabData === "training") {
+      setTrainingData([
+        ...trainingData,
+        {
+          id: uuidv4(),
+          trainingName: "",
+          trainingDescription: "",
+          from: "2000-01-01",
+          to: moment().format("YYYY-MM-DD"),
+        },
+      ]);
     }
   };
   //Deletes data from either of education or experience tab
@@ -140,6 +167,10 @@ function App() {
       tmpStorage = [...experienceData];
       tmpStorage.splice(i, 1);
       setExperienceData(tmpStorage);
+    } else if (dataInfo === "training") {
+      tmpStorage = [...trainingData];
+      tmpStorage.splice(i, 1);
+      setTrainingData(tmpStorage);
     }
   };
   //show the final output data and modal
@@ -153,6 +184,7 @@ function App() {
       [...skillsData],
       [...educationData],
       [...experienceData],
+      [...trainingData],
     ]);
     setShowModal(true);
   };
@@ -198,6 +230,14 @@ function App() {
         from: "2012-04-27",
         to: "2016-04-27",
       },
+      {
+        id: uuidv4(),
+        universityName: "STI College-Zamboanga",
+        educationAddress: "Gov. Lim Avenue, Zamboanga City",
+        degree: "Bachelor of Science in Information Technology",
+        from: "2012-04-27",
+        to: "2016-04-27",
+      },
     ]);
     setExperienceData([
       {
@@ -209,6 +249,32 @@ function App() {
           "File management and create a weekly-basis report",
         from: "2020-04-20",
         to: "2020-10-20",
+      },
+      {
+        id: uuidv4(),
+        companyName: "Bureau of Customs",
+        experienceAddress: "Port of Zamboanga, Zamboanga City",
+        position: "Administrative Services Assistant",
+        experienceDescription:
+          "File management and create a weekly-basis report",
+        from: "2020-04-20",
+        to: "2020-10-20",
+      },
+    ]);
+    setTrainingData([
+      {
+        id: uuidv4(),
+        trainingName: "TESDA Course Training",
+        trainingDescription: "NCII - Computer Hardware Servicing",
+        from: "2015-05-06",
+        to: "2015-04-20",
+      },
+      {
+        id: uuidv4(),
+        trainingName: "TESDA Course Training",
+        trainingDescription: "NCIII - 3D Animation",
+        from: "2016-04-05",
+        to: "2016-10-21",
       },
     ]);
   };
@@ -323,6 +389,37 @@ function App() {
               <li key={experience.id}>
                 <ExperienceSection
                   experience={experience}
+                  i={i}
+                  onDataChange={onDataChange}
+                  deleteTab={deleteTab}
+                />
+              </li>
+            ))}
+          </ul>
+
+          {/* Training section*/}
+
+          <div className="header">
+            <div>
+              <h1>TRAINING</h1>
+            </div>
+            <div>
+              <button
+                className="btn add"
+                onClick={(e) => {
+                  addTab(e, "training");
+                }}
+              >
+                {" "}
+                Add Training Tab
+              </button>
+            </div>
+          </div>
+          <ul>
+            {trainingData.map((training, i) => (
+              <li key={training.id}>
+                <TrainingSection
+                  training={training}
                   i={i}
                   onDataChange={onDataChange}
                   deleteTab={deleteTab}

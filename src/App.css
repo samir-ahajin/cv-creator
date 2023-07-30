@@ -184,7 +184,8 @@ select :first-child {
 
 /*Education and experience section*/
 .education,
-.experience {
+.experience,
+.training {
   display: grid;
   grid-template-columns: 1fr;
   padding: 1rem;
@@ -192,7 +193,8 @@ select :first-child {
   margin-bottom: 1.5rem;
 }
 .education .grid-item,
-.experience .grid-item {
+.experience .grid-item,
+.training .grid-item {
   display: grid;
   grid-template-columns: 150px 1fr;
   align-items: center;
@@ -237,9 +239,11 @@ select :first-child {
   #personal-info .grid-item div {
     padding: 4px 0px;
   }
-  #education .grid-item,
-  #experience .grid-item {
+  .education .grid-item,
+  .experience .grid-item,
+  .training .grid-item {
     grid-template-columns: 1fr;
+    text-align: center;
   }
 
   .header div:last-child {
@@ -248,28 +252,6 @@ select :first-child {
 }
 #buttons {
   z-index: 2000;
-}
-
-@page {
-  size: A4;
-  margin: 0;
-}
-@media print {
-  html,
-  body {
-    width: 210mm;
-    height: 257mm;
-  }
-  .page {
-    margin: 0;
-    border: initial;
-    border-radius: initial;
-    width: initial;
-    min-height: initial;
-    box-shadow: initial;
-    background: initial;
-    page-break-after: always;
-  }
 }
 
 @keyframes show {
