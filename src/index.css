@@ -74,8 +74,7 @@ h1 {
 }
 #page {
   font-size: 16px !important;
-  overflow-y: scroll;
-  overflow-x: hidden;
+
   line-height: 22px;
   letter-spacing: 2px;
   position: fixed;
@@ -83,6 +82,7 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
+  overflow-y: scroll;
   height: 100vh;
   padding: 1.5rem;
   width: 210mm;
@@ -92,8 +92,6 @@ h1 {
   z-index: 2000;
   animation: 0.5s show alternate;
   transition: transform 0.3s ease-in-out, opacity 0.4s ease;
-
-  overflow: scroll;
 }
 #page h1 {
   font-size: 16px !important;
@@ -101,6 +99,8 @@ h1 {
 
 #subpage {
   padding: 0.5cm 1cm;
+
+  width: 210mm;
   height: 100vh;
 }
 
@@ -124,7 +124,7 @@ h1 {
 }
 
 .indentation {
-  padding: 1rem 2rem;
+  padding: 1.85rem;
 }
 .personal-section li {
   display: grid;

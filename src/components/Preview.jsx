@@ -63,6 +63,9 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
           >
             Print
           </button>
+          <i id="note">
+            For <b>wide</b> screen only. Click Print
+          </i>
         </div>
       </div>
       <div id="modal">
