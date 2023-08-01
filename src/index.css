@@ -42,7 +42,26 @@ h1 {
   font-weight: bolder;
   letter-spacing: 4px;
 }
-
+#buttons {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+  z-index: 3000;
+}
+#buttons button {
+  background-color: #06283d;
+  width: 120px;
+  padding: 1.5rem 0rem;
+  border-radius: 5px;
+  color: white;
+  margin: 3px;
+}
+#buttons button:hover {
+  background-color: rgb(223, 27, 27);
+  font-weight: bold;
+  padding: 1.3rem 0rem;
+}
 #overlay {
   position: fixed;
   height: 100%;
@@ -54,8 +73,9 @@ h1 {
   z-index: 1000;
 }
 #page {
-  overflow: scroll;
   font-size: 16px !important;
+  overflow-y: scroll;
+  overflow-x: hidden;
   line-height: 22px;
   letter-spacing: 2px;
   position: fixed;
@@ -63,27 +83,25 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
+  height: 100vh;
+  padding: 1.5rem;
   width: 210mm;
-  min-height: 297mm;
-  padding: 20mm;
-  margin: 10mm auto;
   border: 1px #d3d3d3 solid;
   border-radius: 5px;
-  background: white;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   z-index: 2000;
   animation: 0.5s show alternate;
   transition: transform 0.3s ease-in-out, opacity 0.4s ease;
+
   overflow: scroll;
 }
 #page h1 {
   font-size: 16px !important;
 }
 
-.subpage {
-  padding: 1cm;
-  border: 5px red solid;
-  height: 257mm;
+#subpage {
+  padding: 0.5cm 1cm;
+  height: 100vh;
 }
 
 .upper-side ul {

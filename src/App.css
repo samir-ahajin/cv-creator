@@ -257,10 +257,10 @@ select :first-child {
 @keyframes show {
   from {
     transition: transform 0.3s ease-in-out, opacity 0.4s ease;
-    transform: translate(-50%, -100%);
+    opacity: 0;
   }
 
   to {
-    transform: translate(-50%, -50%);
+    opacity: 1;
   }
 }

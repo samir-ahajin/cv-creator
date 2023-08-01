@@ -1,3 +1,5 @@
+import printJS from "print-js";
+
 export default function Preview({ showModal, closeModal, finalCVInfo }) {
   if (!showModal) return null;
 
@@ -6,7 +8,7 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
     <li key={skill.id}>{skill.description}</li>
   ));
   const education = finalCVInfo[2].map((educ) => (
-    <li key={educ.id} className="space-bottom">
+    <li key={educ.id} className="space-bottom p-break">
       <ul>
         <li>{educ.universityName}</li>
         <li>{educ.degree}</li>
@@ -17,7 +19,7 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
     </li>
   ));
   const experience = finalCVInfo[3].map((exp) => (
-    <li key={exp.id} className="space-bottom">
+    <li key={exp.id} className="space-bottom p-break">
       <ul>
         <li>{exp.companyName}</li>
         <li>{exp.position}</li>
@@ -32,7 +34,7 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
     </li>
   ));
   const trainings = finalCVInfo[4].map((training) => (
-    <li key={training.id} className="space-bottom">
+    <li key={training.id} className="space-bottom p-break">
       <ul>
         <li>{training.trainingName}</li>
         <li>
@@ -45,27 +47,28 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
   ));
   return (
     <>
+      <div id="buttons">
+        <div className="center">
+          <button
+            onClick={(e) => {
+              closeModal(e);
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => {
+              printResume();
+            }}
+          >
+            Print
+          </button>
+        </div>
+      </div>
       <div id="modal">
-        <div id="overlay"></div>
+        <div id="overlay"> </div>
         <div id="page">
-          <div id="buttons">
-            <button
-              onClick={(e) => {
-                closeModal(e);
-              }}
-            >
-              Cancel
-            </button>
-            <button
-              onClick={() => {
-                window.print();
-              }}
-            >
-              Print
-            </button>
-          </div>
-
-          <div className="subpage">
+          <div id="subpage">
             <div className="upper-side">
               <ul>
                 <div>
@@ -111,20 +114,20 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
                 </li>
               </ul>
             </div>
-            <h1>SKILLS:</h1>
+            <h1 className="heading-title">SKILLS:</h1>
 
             <div className="skills-section indentation">
               <ul>{skills}</ul>
             </div>
-            <h1>EDUCATION:</h1>
+            <h1 className="heading-title">EDUCATION:</h1>
             <div className="education-section indentation">
               <ul>{education}</ul>
             </div>
-            <h1>WORK EXPERIENCE:</h1>
+            <h1 className="heading-title">WORK EXPERIENCE:</h1>
             <div className="exp-section indentation">
               <ul>{experience}</ul>
             </div>
-            <h1>TRAININGS/SEMINARS ATTENDED:</h1>
+            <h1 className="heading-title">TRAININGS/SEMINARS ATTENDED:</h1>
             <div className="exp-section indentation">
               <ul>{trainings}</ul>
             </div>
@@ -145,4 +148,13 @@ function dateToString(value) {
     year: "numeric",
   });
   return full;
+}
+/* eslint-disable */
+
+function printResume() {
+  printJS({
+    printable: "subpage",
+    type: "html",
+    targetStyles: ["*"],
+  });
 }

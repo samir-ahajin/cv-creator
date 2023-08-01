@@ -230,26 +230,8 @@ function App() {
         from: "2012-04-27",
         to: "2016-04-27",
       },
-      {
-        id: uuidv4(),
-        universityName: "STI College-Zamboanga",
-        educationAddress: "Gov. Lim Avenue, Zamboanga City",
-        degree: "Bachelor of Science in Information Technology",
-        from: "2012-04-27",
-        to: "2016-04-27",
-      },
     ]);
     setExperienceData([
-      {
-        id: uuidv4(),
-        companyName: "Bureau of Customs",
-        experienceAddress: "Port of Zamboanga, Zamboanga City",
-        position: "Administrative Services Assistant",
-        experienceDescription:
-          "File management and create a weekly-basis report",
-        from: "2020-04-20",
-        to: "2020-10-20",
-      },
       {
         id: uuidv4(),
         companyName: "Bureau of Customs",
@@ -430,18 +412,20 @@ function App() {
 
           {/* Submitting the form after fill up*/}
           <div id="preview">
-            <button
-              className="btn"
-              onClick={() => {
-                generateCV();
-              }}
-              type="button"
-            >
-              Sample
-            </button>
-            <button id="show" className="btn" type="submit">
-              Preview
-            </button>
+            <div className="center">
+              <button
+                className="btn"
+                onClick={() => {
+                  generateCV();
+                }}
+                type="button"
+              >
+                Sample
+              </button>
+              <button id="show" className="btn" type="submit">
+                Preview
+              </button>
+            </div>
           </div>
         </form>
         {/* End of form*/}
