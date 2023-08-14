@@ -65,7 +65,7 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
           </button>
           <div id="note">
             <p>
-              To preview result. For <span className="specify">wide</span>{" "}
+              To fully preview result. For <span className="specify">wide</span>{" "}
               screen only at the back. Click{" "}
               <span className="specify">Print</span>.
             </p>
