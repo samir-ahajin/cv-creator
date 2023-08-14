@@ -48,7 +48,7 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
   return (
     <>
       <div id="buttons">
-        <div className="center">
+        <div id="prev" className="center">
           <button
             onClick={(e) => {
               closeModal(e);
@@ -63,9 +63,13 @@ export default function Preview({ showModal, closeModal, finalCVInfo }) {
           >
             Print
           </button>
-          <i id="note">
-            For <b>wide</b> screen only. Click Print
-          </i>
+          <div id="note">
+            <p>
+              To preview result. For <span className="specify">wide</span>{" "}
+              screen only at the back. Click{" "}
+              <span className="specify">Print</span>.
+            </p>
+          </div>
         </div>
       </div>
       <div id="modal">

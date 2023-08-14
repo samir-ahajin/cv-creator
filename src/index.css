@@ -122,7 +122,22 @@ h1 {
   text-align: right;
   width: 50%;
 }
-
+#prev {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+.specify {
+  color: red;
+  font-weight: bold;
+}
+#note {
+  display: none;
+  grid-area: note;
+  background-color: rgb(241, 179, 62);
+  padding: 1rem;
+  letter-spacing: 2px;
+}
 .indentation {
   padding: 1.85rem;
 }
@@ -144,4 +159,15 @@ h1 {
 }
 .space-bottom {
   margin-bottom: 1rem;
+}
+@media only screen and (max-width: 850px) {
+  #prev {
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "left-b right-b"
+      "note note";
+  }
+  #note {
+    display: block;
+  }
 }

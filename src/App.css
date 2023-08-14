@@ -73,6 +73,7 @@ select :first-child {
   bottom: 0;
   transform: translate(-50%, -50%);
 }
+
 #preview .btn {
   background-color: #06283d;
   width: 120px;
@@ -189,7 +190,6 @@ select :first-child {
   display: grid;
   grid-template-columns: 1fr;
   padding: 1rem;
-
   margin-bottom: 1.5rem;
 }
 .education .grid-item,
@@ -214,7 +214,9 @@ select :first-child {
   grid-template-columns: 0.8fr 0.2fr;
   padding: 10px;
 }
-
+#buttons {
+  z-index: 2000;
+}
 @media only screen and (max-width: 650px) {
   #personal-info {
     justify-items: center;
@@ -249,9 +251,6 @@ select :first-child {
   .header div:last-child {
     padding-right: 0;
   }
-}
-#buttons {
-  z-index: 2000;
 }
 
 @keyframes show {
